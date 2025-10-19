@@ -2,9 +2,8 @@
 name = "CADe_CADx_evaluation"
 version = "0.1.0"
 description = ""
-authors = [
-     { name = "Pierre Baudot", email =
-"pierre.baudot@mediantechnologies.com" }, ] dependencies = [
+authors = [{ name = "Pierre Baudot", email = "pierre.baudot@mediantechnologies.com" }, ] 
+dependencies = [
      "matplotlib>=3.8.4",
      "plotly>=5.22.0",
      "nbformat>=5.10.4",
