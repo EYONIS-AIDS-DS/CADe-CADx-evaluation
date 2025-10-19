@@ -36,7 +36,7 @@ def paper_evaluation(
     if run_evaluate_series:
 
         logger.info("Running evaluate series")
-        from evaluate_series import evaluate_series as eval_series
+        from CADe_CADx_evaluation.evaluate_series import evaluate_series as eval_series
         path_model_evaluate_series.mkdir(parents=True, exist_ok=True)
         for (list_series_evaluations, figure_name, path_data_series) in list_series_evaluations_figure:
             start = timeit.default_timer()
@@ -61,7 +61,7 @@ def paper_evaluation(
 
     if run_evaluate_lesions:
         logger.info("Running evaluate lesions")
-        from evaluate_lesions import evaluate_lesions as eval_lesion
+        from CADe_CADx_evaluation.evaluate_lesions import evaluate_lesions as eval_lesion
         path_model_evaluate_lesions.mkdir(parents=True, exist_ok=True)
         for (list_lesions_evaluations, figure_name, path_data_lesions) in list_lesions_evaluations_figure:
             start = timeit.default_timer()
@@ -89,7 +89,7 @@ def paper_evaluation(
     if run_statistical_tests:
         logger.info("Running statistical tests")
         #from lcseval.statistical_tests.statistical_tests import statistical_test_main as stat_test_main
-        from statistical_tests.statistical_tests import statistical_test_main as stat_test_main
+        from CADe_CADx_evaluation.statistical_tests.statistical_tests import statistical_test_main as stat_test_main
         path_model_statistical_tests.mkdir(parents=True, exist_ok=True)
         for (list_of_tuples_of_pairs_of_bootstrap_paths, figure_name) in list_statistical_tests_figure:
             logger.info(f"###############################    {figure_name}    ################################################")
