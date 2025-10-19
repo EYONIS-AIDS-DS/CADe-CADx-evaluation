@@ -4,8 +4,7 @@ requires-python = "==3.11.*"
 resolution-markers = [
      "sys_platform == 'darwin'",
      "platform_machine == 'aarch64' and sys_platform == 'linux'",
-     "(platform_machine != 'aarch64' and sys_platform == 'linux') or 
-(sys_platform != 'darwin' and sys_platform != 'linux')",
+     "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')",
 ]
 
 [[package]]
