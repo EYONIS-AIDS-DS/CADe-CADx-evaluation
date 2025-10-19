@@ -6,7 +6,7 @@ from pathlib import Path
 ############################################################################
 # general parameters
 
-path_model_eval =  Path().resolve().parents[0] / "data" # root path to the evaluation results of the current experiment of the LCS_evaluation
+path_model_eval =  Path().resolve().parents[0] / "CADe-CADx-evaluation" /"data" # root path to the evaluation results of the current experiment of the LCS_evaluation
 
 ##### ORCHESTRATOR (run.py) #####
 # The principle is to use Boolean for the execution or not of the larger evaluation 
