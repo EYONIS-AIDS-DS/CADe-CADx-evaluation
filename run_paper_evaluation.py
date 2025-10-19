@@ -1,7 +1,7 @@
 
 import timeit
 import config_paper as config
-from evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.logger import logger
 import argparse
 import sys
 
