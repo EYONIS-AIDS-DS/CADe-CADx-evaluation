@@ -9,7 +9,7 @@ from scipy import stats
 
 
 import config_paper as config
-from evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.logger import logger
 
 
 def plot_distribution_bootstrap(AUC_arr, AUC_arr_2, name_comparison, expdir):

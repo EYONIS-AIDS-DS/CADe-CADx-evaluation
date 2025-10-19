@@ -4,12 +4,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 import config_paper as config
-from evaluate_common.logger import logger
-from evaluate_common.plot_score_distribution_benign_cancer import distribution_risk_malignant_benign
-from evaluate_common.precision_recall import plot_precision_recall
-from evaluate_common.roc import plot_distribution_proba_malignant_benign, plot_roc_op
-from evaluate_common.roc_confidence_interval import compute_ci_roc_auc
-from evaluate_common.sample_size_analysis import database_sample_sizes
+from CADe_CADx_evaluation.evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.plot_score_distribution_benign_cancer import distribution_risk_malignant_benign
+from CADe_CADx_evaluation.evaluate_common.precision_recall import plot_precision_recall
+from CADe_CADx_evaluation.evaluate_common.roc import plot_distribution_proba_malignant_benign, plot_roc_op
+from CADe_CADx_evaluation.evaluate_common.roc_confidence_interval import compute_ci_roc_auc
+from CADe_CADx_evaluation.evaluate_common.sample_size_analysis import database_sample_sizes
 
 
 def plot_number_annotation_per_annotator_distribution(expdir_analysis: str, set_name: str, label_name: str, data_frame: pd.DataFrame) -> None:

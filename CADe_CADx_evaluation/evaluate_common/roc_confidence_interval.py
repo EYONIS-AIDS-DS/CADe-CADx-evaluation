@@ -10,8 +10,8 @@ from tqdm import tqdm
 
 # from lcseval.evaluate_common.logger import logger
 # from lcseval.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
-from evaluate_common.logger import logger
-from evaluate_common.sens_spec import accuracy, closest_value, sens_spec
+from CADe_CADx_evaluation.evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
 from typing import Tuple, List
 
 

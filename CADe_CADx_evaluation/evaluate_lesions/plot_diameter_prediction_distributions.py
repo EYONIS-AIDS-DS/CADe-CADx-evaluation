@@ -6,7 +6,7 @@ import numpy as np
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from scipy import stats
 
-from evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.logger import logger
 
 
 

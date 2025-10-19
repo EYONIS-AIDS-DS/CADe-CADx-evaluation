@@ -8,7 +8,7 @@ from sklearn.metrics import roc_auc_score, roc_curve
 from typing import Tuple
 
 #from lcseval.evaluate_common.logger import logger
-from evaluate_common.logger import logger
+from CADe_CADx_evaluation.evaluate_common.logger import logger
 
 
 def roc_curve_rectangle(
