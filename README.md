@@ -7,15 +7,19 @@ It deserves two purposes that drives 2 independent usage: first to reproduce all
 
 ## 1. Install
 
-### UV - Ultra-fast Python package manager
+### 1.1 UV - Ultra-fast Python package manager & Git
 
-This repository uses UV to manage the dependencies, environment, python version (...) of the repository, and you need to install it first for a direct, fast and easy usage.
-UV is an ultra-fast Python package manager (see complete on [official UV installation page](https://uv.pypa.io/en/stable/installation/)).
+This repository uses UV to manage the dependencies, environment, python version (...) of the repository, and wenever you would not have it yet, you need to install it first for a direct, fast and easy usage.
+UV is an ultra-fast Python package manager (see complete on [complete UV installation guidelines](https://uv.pypa.io/en/stable/installation/)).
 To install UV, run the following command in your terminal depending on wheither your system is Linux-based or Windows:
 
 Linux / macOS:
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sudo -E sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+or if you don't have curl:
+```bash
+wget -qO- https://astral.sh/uv/install.sh | sh
 ```
 
 Windows (PowerShell):
@@ -23,18 +27,36 @@ Windows (PowerShell):
 irm (Invoke-WebRequest -Uri https://astral.sh/uv/install.ps1).Content | iex
 ```
 
+Whenever you would not have it yet, install Git ([complete GIT installation guidelines](https://git-scm.com/book/fr/v2/D%C3%A9marrage-rapide-Installation-de-Git)): 
+Linux / macOS:
+```bash
+sudo apt-get install git
+```
+For windows, download the [installer](https://git-scm.com/download/win) or use the package [Chocolatey Git](https://chocolatey.org/packages/git) for automatic set up.
+
+### Clone the repositopry 
+
+Create the directory where to save the repository on your hard disc and in your terminal go at this repository (called here "CASe-CADx-evaluation"), and run the command:
+```bash
+git clone https://github.com/EYONIS-AIDS-DS/CADe-CADx-evaluation.git
+```
+or use some SSH key, or dowload the zip from "code" in Github and unzip it in your directory.
+
 ### Install dependencies
 
-To install the required dependencies, run the following command in your terminal:
+To install the required dependencies, run the following command in your terminal at:
 
 ```bash
 uv sync
 ```
-
-Activate the virtual environment:
+To create the virtual environment:
+```bash
+uv venv
+```
+To activate the virtual environment:
 
 ```bash
-uv activate
+source .venv/bin/activate
 ```
 
 
@@ -181,4 +203,5 @@ or alternatively in a python script, write:
 from  run_paper_evaluation import paper_evaluation
 fast_computation = False  # Set to True for faster computation during testing/debugging (nb bootstrap samples reduced to 50 and fast FROC computation)
 paper_evaluation(fast_computation = fast_computation) 
+
 ```
