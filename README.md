@@ -190,7 +190,7 @@ paper_evaluation(fast_computation = fast_computation)
 ```
 In this demo example we settled the parameter "fast_computation" to True:  it allows a quite fast runing of the evaluation process (notably the number of bootstrapps samples is 50).
 
-Although qualitatively the results does not differ, if you want to reproduce the paper evaluation, you have to set the parameter "fast_computation" to False (and expect about a day of computation):
+Although qualitatively the results does not differ much, if you want to reproduce the paper evaluation, you have to set the parameter "fast_computation" to False (and expect about a day of computation):
 
 ```
 \CADe_CADx_evaluation> python3 run_paper_evaluation.py --fast_computation=false
