@@ -77,8 +77,7 @@ def paper_evaluation(
                                             operating_point_thresholds,  # operating_point_thresholds,
                                             operating_point_labels,
                                             nb_bootstrap_samples,  # nb_bootstrap_samples,
-                                            confidence_threshold,
-                                            fast_computation)  # confidence_threshold,config.confidence_threshold,  # confidence_threshold,  
+                                            confidence_threshold)  # confidence_threshold,config.confidence_threshold,  # confidence_threshold,  
             logger.info(f"The time to evaluate series {figure_name} is: {timeit.default_timer() - start}")
         
 
