@@ -184,7 +184,7 @@ To make the whole paper evaluation, just run the following command in terminal:
 or alternatively in a python script, write:
 
 ```
-from  run_paper_evaluation import paper_evaluation
+from  CADe_CADx_evaluation.run_paper_evaluation import paper_evaluation
 fast_computation = True  # Set to True for faster computation during testing/debugging (nb bootstrap samples reduced to 50 and fast FROC computation)
 paper_evaluation(fast_computation = fast_computation) 
 ```
