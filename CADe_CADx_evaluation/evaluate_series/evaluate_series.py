@@ -475,62 +475,62 @@ def parse_args(args):
     ##################
     help_msg = "path to the CSV series"
     default = config.path_data_series 
-    parser.add_argument("path_to_load_csv_serie", help=help_msg, default=default, type=str)
+    parser.add_argument("--path_to_load_csv_serie", help=help_msg, default=default, type=str)
     ##################
     # expdir
     ##################
     help_msg = "name of the directory where to save outputs "
     default = config.path_model_evaluate_series
-    parser.add_argument("expdir", help=help_msg, default=default, type=str)
+    parser.add_argument("--expdir", help=help_msg, default=default, type=str)
 
     ##################
     # set_name
     ##################
     help_msg = "name of the test set, as a boolean variable in the CSV file deisgning a subset of the data"
     default = config.list_series_evaluations[0][0]
-    parser.add_argument("set_name", help=help_msg, default=default, type=str)
+    parser.add_argument("--set_name", help=help_msg, default=default, type=str)
 
     ##################
     # prediction
     ##################
     help_msg = "name of the prediction, as a string  variable in the CSV file pointing to probability-prediction inference"
     default = config.list_lesions_evaluations[0][1]
-    parser.add_argument("prediction", help=help_msg, default=default, type=str)
+    parser.add_argument("--prediction", help=help_msg, default=default, type=str)
     
     ##################
     # label_name
     ##################
     help_msg = "name of the label GT column in the CSV file"
     default = config.list_series_evaluations[0][2]
-    parser.add_argument("label_name", help=help_msg, default=default, type=str)
+    parser.add_argument("--label_name", help=help_msg, default=default, type=str)
 
     ##################
     # operating_point_thresholds
     ##################
     help_msg = "list of operating point thresholds "
     default = config.list_series_evaluations[0][3]
-    parser.add_argument("operating_point_thresholds", nargs="+", help=help_msg, default=default, type=float,)
+    parser.add_argument("--operating_point_thresholds", nargs="+", help=help_msg, default=default, type=float,)
     
     ##################
     # operating_point_labels
     ##################
     help_msg = "list of operating point labels "
     default = config.list_series_evaluations[0][4]
-    parser.add_argument("operating_point_labels", nargs="+", help=help_msg, default=default, type=float,)
+    parser.add_argument("--operating_point_labels", nargs="+", help=help_msg, default=default, type=float,)
 
     ##################
     # nb_bootstap_samples
     ##################
     help_msg = "nb_bootstrap_samples"
     default = config.nb_bootstrap_samples
-    parser.add_argument("nb_bootstrap_samples", help=help_msg, default=default, type=int)
+    parser.add_argument("--nb_bootstrap_samples", help=help_msg, default=default, type=int)
 
     ##################
     # confidence_threshold
     ##################
     help_msg = "confidence_threshold"
     default = config.confidence_threshold
-    parser.add_argument("confidence_threshold", help=help_msg, default=default, type=int)
+    parser.add_argument("--confidence_threshold", help=help_msg, default=default, type=int)
     
     return parser.parse_args(args)
 
