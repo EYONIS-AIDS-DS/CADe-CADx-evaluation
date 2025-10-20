@@ -44,14 +44,13 @@ or use some SSH key, or dowload the zip from "code" in Github and unzip it in yo
 
 ### Install dependencies
 
-To install the required dependencies, run the following command in your terminal at:
-
-```bash
-uv sync
-```
 To create the virtual environment:
 ```bash
 uv venv
+```
+To install the required dependencies, run the following command in your terminal at:
+```bash
+uv sync
 ```
 To activate the virtual environment:
 
@@ -200,8 +199,61 @@ Although qualitatively the results does not differ, if you want to reproduce the
 or alternatively in a python script, write:
 
 ```
-from  run_paper_evaluation import paper_evaluation
+from  CADe_CADx_evaluation.run_paper_evaluation import paper_evaluation
 fast_computation = False  # Set to True for faster computation during testing/debugging (nb bootstrap samples reduced to 50 and fast FROC computation)
 paper_evaluation(fast_computation = fast_computation) 
 
 ```
+
+## 4. Submodules "evaluate_series", "evaluate_lesions", and "statistical_tests" independent usage
+
+We can now investigate the uses of the different submodules independently. To do so, you can either use the input csv provided in \data\data series or create a new one from scratch:
+
+```
+import CADe_CADx_evaluation.config_paper as config
+import pandas as pd
+from CADe_CADx_evaluation.evaluate_series import evaluate_series as eval_series
+import numpy as np
+
+path_data_series = config.path_data / "data_series" / "series_to_use.csv"
+sample_size = 1000
+np.random.seed(42) 
+data = {
+    "series_uid": np.arange(1, sample_size + 1),  # Unique identifiers from 1 to 1000
+    "prediction_to_use": np.random.rand(sample_size),  # Random float values between 0 and 1
+    "label_to_use": np.random.randint(0, 2, size=sample_size),  # Random binary values (0 or 1)
+    "subset_to_use": np.random.choice(["TRUE", "FALSE"], size=sample_size, p=[0.9, 0.1])  # 90% TRUE, 10% FALSE
+}
+df = pd.DataFrame(data)
+df["prediction_to_use"]= ((df["label_to_use"]*2)-1) * np.random.rand(sample_size) *0.5 +0.5  # make predictions correlated with labels
+df.to_csv(path_data_series, index=False)
+```
+
+### 4.1 Submodule "evaluate_series"
+
+We can run the evaluation of series prediction we just created, by defining the arguments values and running:
+```
+from CADe_CADx_evaluation.evaluate_series import evaluate_series as eval_series
+path_data_series = config.path_data / "data_series" / "series_to_use.csv"
+path_model_evaluate_series = config.path_model_eval / "evaluate_series" / "figure_test"
+set_name = "subset_to_use"
+prediction = "prediction_to_use"
+label_name = "label_to_use"
+operating_point_thresholds = [0,]
+operating_point_labels = ["Youden Index Max"]
+nb_bootstrap_samples = 500
+confidence_threshold = 0.95
+eval_series.evaluate_serie_main(path_data_series ,  # path_to_load_csv_serie,
+                                path_model_evaluate_series ,  # expdir,
+                                set_name,  # set_name,
+                                prediction,  # prediction,
+                                label_name,  # label_name,
+                                operating_point_thresholds,  # operating_point_thresholds,
+                                operating_point_labels,
+                                nb_bootstrap_samples,  # nb_bootstrap_samples,
+                                confidence_threshold,)  # confidence_threshold,config.confidence_threshold,  # confidence_threshold,
+```
+
+### 4.2 Submodule "evaluate_lesions"
+
+### 4.3 Submodule "statistical_tests"
