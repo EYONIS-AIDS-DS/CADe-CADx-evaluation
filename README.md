@@ -3,7 +3,7 @@
 This repository provides a complete evaluation of the performance of CADe (Computer-Aided Detection) and CADx (Computer-Aided Diagnosis) systems. 
 It only adresses single "target" detection system, nambely binary detection and classification systems (e.g malignant nodule), and computes ROCs, Precison-Recall, FROCs (with severall Operating Points spacifictions), bootstrapps, Confidence Intervals, statistical comparison tests, across sets of detection predictions (...). Simply, it provides a standard and generic CADe/CADx evaluation process. 
 
-It deserves two purposes that drives 2 independent usage: first to reproduce all the results of the publication (give arXiv link), second to provide evaluation process system for other CADe/CADx.
+It deserves two purposes that drives 2 independent usage: first to reproduce all the results of the preprint "Rethinking Lung Cancer Screening: AI Nodule Detection and Diagnosis Outperforms Radiologists, Leading Models, and Standards Beyond Size and Growth" ([https://arxiv.org/abs/2512.00281](https://arxiv.org/abs/2512.00281)), second to provide evaluation process system for other CADe/CADx.
 
 ## 1. Install
 
