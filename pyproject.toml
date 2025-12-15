@@ -30,4 +30,6 @@ line-length = 120
 [tool.ruff.format]
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
+[tool.setuptools.packages.find]
+exclude = ["data", "data.*"]
 
