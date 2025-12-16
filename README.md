@@ -219,6 +219,10 @@ To make the whole paper evaluation, just run the following command in terminal:
 ```
 \CADe_CADx_evaluation>python3 run_paper_evaluation.py --fast_computation=true
 ```
+or 
+```
+\CADe_CADx_evaluation>python run_paper_evaluation.py --fast_computation=true
+```
 
 or alternatively in a python script, write:
 
