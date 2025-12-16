@@ -1,12 +1,14 @@
 from pathlib import Path
 
+# Get the project root directory
+PROJECT_ROOT = Path(__file__).parent
 
 ############################################################################
 ###################               general              #####################
 ############################################################################
 # general parameters
 
-path_model_eval =  Path().resolve().parents[0] / "CADe-CADx-evaluation" /"data" # root path to the evaluation results of the current experiment of the LCS_evaluation
+path_model_eval = PROJECT_ROOT / "data"  # root path to the evaluation results of the current experiment of the LCS_evaluation
 
 ##### ORCHESTRATOR (run.py) #####
 # The principle is to use Boolean for the execution or not of the larger evaluation 
@@ -282,13 +284,13 @@ list_of_tuples_of_pairs_of_bootstrap_paths_figure_3 = [
 ] 
 figure_name = "figure_4"
 root = path_model_eval / "evaluate_lesions"/ figure_name
-root2 = "/mnt/datalake/DS-lake/LCS_MVP0/results/lcs_evaluation/algo4v2.2_test_pop1/evaluate_lesions/iou_box_box_aids/"
 list_of_tuples_of_pairs_of_bootstrap_paths_figure_4 = [
     ("SENS_at_0.5_and_1_FP_per_scan__model_vs_4radiolog_test3",             root / "model_prediction_test3/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",      root / "4_radiologist_prediction_test3/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",),
     ("SENS_at_0.5_and_1_FP_per_scan__model_vs_nnDetection_CADex_test1",     root / "model_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",      root / "nndetection_CADex_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
     ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_nnDetection_CADe_test1", root / "model_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
     ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_Baumgartner_CADe_test1", root / "model_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_baumgartner_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
 ]
+
 figure_name = "figure_5"
 root = path_model_eval / "evaluate_series"/ figure_name
 root2 =  path_model_eval / "evaluate_lesions"/ figure_name

@@ -1,13 +1,12 @@
-
 import timeit
+from pathlib import Path
 import config_paper as config
 from CADe_CADx_evaluation.evaluate_common.logger import logger
 import argparse
 import sys
 
-
-
-
+# Get the project root directory
+PROJECT_ROOT = Path(__file__).parent
 
 def paper_evaluation(
     fast_computation = config.fast_computation,
@@ -25,6 +24,11 @@ def paper_evaluation(
     list_statistical_tests_figure = config.list_statistical_tests_figure,   
 )-> None:
 
+    # Convert string paths to Path objects if needed
+    path_model_eval = Path(path_model_eval) if isinstance(path_model_eval, str) else path_model_eval
+    path_model_evaluate_series = Path(path_model_evaluate_series) if isinstance(path_model_evaluate_series, str) else path_model_evaluate_series
+    path_model_evaluate_lesions = Path(path_model_evaluate_lesions) if isinstance(path_model_evaluate_lesions, str) else path_model_evaluate_lesions
+    path_model_statistical_tests = Path(path_model_statistical_tests) if isinstance(path_model_statistical_tests, str) else path_model_statistical_tests
 
     path_model_eval.mkdir(parents=True, exist_ok=True)
     if fast_computation:
