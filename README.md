@@ -34,7 +34,7 @@ sudo apt-get install git
 ```
 For windows, download the [installer](https://git-scm.com/download/win) or use the package [Chocolatey Git](https://chocolatey.org/packages/git) for automatic set up.
 
-### Clone the repositopry 
+### 1.2 Clone the repositopry 
 
 Create the directory where to save the repository on your hard disc and in your terminal go at this repository (called here "CASe-CADx-evaluation"), and run the command:
 ```bash
@@ -42,7 +42,7 @@ git clone https://github.com/EYONIS-AIDS-DS/CADe-CADx-evaluation.git
 ```
 or use some SSH key, or dowload the zip from "code" in Github and unzip it in your directory.
 
-### Install dependencies
+### 1.3 Install dependencies
 
 To create the virtual environment:
 ```bash
@@ -57,7 +57,46 @@ To activate the virtual environment:
 ```bash
 source .venv/bin/activate
 ```
+### 1.4 Data Files Setup
 
+This repository uses Git LFS (Large File Storage) for large CSV files.
+ 
+**Before running the evaluation scripts, you must Install Git LFS:**
+ 
+   ```bash
+   # macOS
+   brew install git-lfs
+   # Windows
+   choco install git-lfs
+   # OR download from https://git-lfs.github.com/
+   # Linux (Ubuntu/Debian)
+   sudo apt-get install git-lfs
+   ```
+Then, pull the data files:
+```bash
+git lfs install
+git lfs pull
+```
+Verify the files are correct:
+```bash
+head -1 data/data_lesions/lesions.csv
+```
+If you experience issues with Git LFS, you can manually download the files:
+```bash
+$files = @(
+    "lesions.csv",
+    "lesions_radiologists.csv",
+    "lesions_longitudinal.csv",
+    "lesions_model_CADe.csv",
+    "lesions_nndetection_baumgartner_CADe.csv",
+    "lesions_nndetection_CADe.csv",
+    "lesions_nndetection_CADx.csv"
+)
+$base_url = "https://media.githubusercontent.com/media/EYONIS-AIDS-DS/CADe-CADx-evaluation/refs/heads/main/data/data_lesions%22
+foreach ($file in $files) {
+    Invoke-WebRequest -Uri "$base_url/$file" -OutFile "data/data_lesions/$file"
+} 
+```
 
 ## 2. Structure of the repository
 
