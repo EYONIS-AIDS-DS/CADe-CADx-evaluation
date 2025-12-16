@@ -279,7 +279,7 @@ def evaluate_lesions_main(fast_computation,
 
     # Compute FROC
     logger.info("Plot FROC and sens spec at 2 operating points")
-    fast_computation = False # to avoid long unsusefull computation
+    # fast_computation = False # to avoid long unsusefull computation
        
     compute_froc_with_2_op( data_frame,
                             y_labels,
