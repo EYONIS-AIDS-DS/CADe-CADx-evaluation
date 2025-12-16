@@ -31,8 +31,13 @@ def paper_evaluation(
     path_model_statistical_tests = Path(path_model_statistical_tests) if isinstance(path_model_statistical_tests, str) else path_model_statistical_tests
 
     path_model_eval.mkdir(parents=True, exist_ok=True)
+    
+    # Override nb_bootstrap_samples if fast_computation is True
     if fast_computation:
         nb_bootstrap_samples = 50
+        logger.info(f"Fast computation enabled: nb_bootstrap_samples set to {nb_bootstrap_samples}")
+    else:
+        logger.info(f"Full computation: nb_bootstrap_samples = {nb_bootstrap_samples}")
     ###################################################################################################
     ##############################         EVALUATION  SERIES          ################################
     ################################################################################################### 
@@ -127,8 +132,8 @@ def parse_args(args):
     parser.add_argument(
         "--fast_computation",
         type=lambda x: x.lower() in ["true", "1", "yes"],
-        default=True,  # Default value is True
-        help="Enable or disable fast computation (true/false). Default is true.",
+        default=default,  # Changed from True to default
+        help="Enable or disable fast computation (true/false). Default is from config.",
     )
 
     ##################
@@ -227,7 +232,7 @@ def parse_args(args):
 if __name__ == "__main__":
 
     logger.info("Start PAPER EVALUATION")
-    local_run = False  # Put False if you want to run the script from Command line else it will use the config parameters
+    local_run = False  # Set to False to use command line arguments
     if local_run:
         #######  PARAMETERS - ARGS   ##############################
         fast_computation = config.fast_computation
