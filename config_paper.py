@@ -169,7 +169,9 @@ diameter_threshold_min = [4, 10, 20]
 diameter_threshold_max = [10, 20, 32]
 
 list_lesions_evaluations_figure_4 = [
-    ("test3", "4_radiologist_prediction",               "label",       [0,], ["Youden Index Max"]), 
+    ("test3", "4_radiologist_prediction",               "label",       [0,], ["Youden Index Max"]),
+    ("test3", "model_prediction",                       "label",       [0,], ["Youden Index Max"]), 
+    ("test1", "model_prediction",                       "label",       [0,], ["Youden Index Max"]), 
     ("test1", "nndetection_CADex_prediction",           "label",       [0,], ["Youden Index Max"]),
     ("test1", "model_CADe_prediction",                  "label_nodule",[0,], ["Youden Index Max"]), 
     ("test1", "nndetection_baumgartner_CADe_prediction","label_nodule",[0,], ["Youden Index Max"]), 
@@ -283,13 +285,14 @@ list_of_tuples_of_pairs_of_bootstrap_paths_figure_3 = [
     ("AUC_radiolog_12_model_vs_radiolog", root / "model_prediction_radiologist_12" / "AUC_array_5000_bootstrap_radiologist_12.npy", root / "radiologist_12_max_malignancy_radiologist_12" / "AUC_array_5000_bootstrap_radiologist_12.npy"),
 ] 
 figure_name = "figure_4"
-root = path_model_eval / "evaluate_lesions"/ figure_name
+root = path_model_eval / "evaluate_lesions" / figure_name
 list_of_tuples_of_pairs_of_bootstrap_paths_figure_4 = [
-    ("SENS_at_0.5_and_1_FP_per_scan__model_vs_4radiolog_test3",             root / "model_prediction_test3/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",      root / "4_radiologist_prediction_test3/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",),
-    ("SENS_at_0.5_and_1_FP_per_scan__model_vs_nnDetection_CADex_test1",     root / "model_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",      root / "nndetection_CADex_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
-    ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_nnDetection_CADe_test1", root / "model_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
-    ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_Baumgartner_CADe_test1", root / "model_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_baumgartner_CADe_prediction_test1/at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
+    ("SENS_at_0.5_and_1_FP_per_scan__model_vs_4radiolog_test3",             root / "model_prediction_test3" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",      root / "4_radiologist_prediction_test3" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test3.npy",),
+    ("SENS_at_0.5_and_1_FP_per_scan__model_vs_nnDetection_CADex_test1",     root / "model_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",      root / "nndetection_CADex_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
+    ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_nnDetection_CADe_test1", root / "model_CADe_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_CADe_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
+    ("SENS_at_0.5_and_1_FP_per_scan__model_CADe_vs_Baumgartner_CADe_test1", root / "model_CADe_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy", root / "nndetection_baumgartner_CADe_prediction_test1" / "at_0.5_and_1_FP_per_scansensitivity_array_5000bootstrap_for_each_OP_FROC_test1.npy",),
 ]
+
 
 figure_name = "figure_5"
 root = path_model_eval / "evaluate_series"/ figure_name
@@ -329,7 +332,6 @@ list_of_tuples_of_pairs_of_bootstrap_paths_figure_6 = [
     ("AUC_patient_model_T-1_NODCATIII_vs_model_evolution_NODCATIII_test6",root / "model_prediction_T-1_NODCATIII_test6" / "AUC_array_5000_bootstrap_NODCATIII_test6.npy",  root / "model_prediction_evolution_NODCATIII_test6" / "AUC_array_5000_bootstrap_NODCATIII_test6.npy"),
     ("AUC_patient_model_T-1_NODCATIII_vs_delta_volume_test6",             root / "model_prediction_T-1_NODCATIII_test6" / "AUC_array_5000_bootstrap_NODCATIII_test6.npy",  root / "VDT_NODCATIII_test6" / "AUC_array_5000_bootstrap_NODCATIII_test6.npy"),
 ]
- 
 
 
 list_statistical_tests_figure = [
