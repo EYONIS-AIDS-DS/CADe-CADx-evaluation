@@ -1,3 +1,4 @@
+"""ROC curve computation and plotting utilities."""
 import os
 
 import matplotlib.pyplot as plt
@@ -7,7 +8,6 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from sklearn.metrics import roc_auc_score, roc_curve
 from typing import Tuple
 
-#from lcseval.evaluate_common.logger import logger
 from CADe_CADx_evaluation.evaluate_common.logger import logger
 
 
@@ -15,7 +15,31 @@ def roc_curve_rectangle(
     y_labels: np.ndarray,
     y_predictions: np.ndarray,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+    """Compute a ROC curve and AUC using the Riemann midpoint rule.
 
+    This implementation sweeps thresholds linearly from 0 to 1 and
+    computes the area using the rectangular (midpoint) approximation — it
+    serves as a reference/validation alternative to the trapezoidal method
+    used by scikit-learn.
+
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array (0 = negative, 1 = positive).
+    y_predictions:
+        Numeric prediction scores, same length as *y_labels*.
+
+    Returns
+    -------
+    fpr : np.ndarray
+        False Positive Rate at each threshold.
+    tpr : np.ndarray
+        True Positive Rate at each threshold.
+    thresholds : np.ndarray
+        Linearly spaced threshold values used for evaluation.
+    auc_rect : float
+        Area Under the Curve estimated by the midpoint Riemann sum.
+    """
     fpr = []
     tpr = []
     thresholds = np.linspace(0.0, 1.0, len(y_labels))
@@ -54,7 +78,24 @@ def compute_roc_auc(
     y_predictions: np.ndarray,
     use_scikit_trapezoidal_roc: bool = True,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+    """Compute the ROC curve and AUC.
 
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array.
+    y_predictions:
+        Numeric prediction scores.
+    use_scikit_trapezoidal_roc:
+        If ``True`` (default), use scikit-learn's trapezoidal
+        :func:`sklearn.metrics.roc_curve`. If ``False``, use
+        the Riemann midpoint implementation :func:`roc_curve_rectangle`.
+
+    Returns
+    -------
+    fpr, tpr, thresholds, auc : Tuple
+        ROC curve arrays and scalar AUC value.
+    """
     if use_scikit_trapezoidal_roc:
         fpr, tpr, thresholds = roc_curve(y_labels, y_predictions, drop_intermediate=False)
         test_auc_model = roc_auc_score(y_labels, y_predictions)
@@ -65,7 +106,27 @@ def compute_roc_auc(
 
 
 def plot_roc_op(name_analysis: str, expdir_analysis: str, set_name: str, operating_point_labels: list) -> None:
+    """Load pre-computed ROC results and plot the curve with operating points.
 
+    This function reads three CSV files written by
+    :func:`roc_confidence_interval.compute_ci_roc_auc` and produces an
+    annotated ROC plot saved as PNG and SVG.
+
+    Parameters
+    ----------
+    name_analysis:
+        Human-readable label for the analysis (used in the plot title and
+        to decide whether to draw point markers on the curve for radiologist
+        annotations).
+    expdir_analysis:
+        Directory containing the pre-computed CSV results and where the
+        output plot files are written.
+    set_name:
+        Evaluation subset identifier used for file name suffixes.
+    operating_point_labels:
+        Ordered list of labels for each operating point shown as scatter
+        markers on the ROC curve.
+    """
     # load the results needed to plot the figure... they are generated and saved by roc_confidence_interval.py
     roc_fpr_tpr = pd.read_csv(os.path.join(expdir_analysis,"roc_fpr_tpr_" + str(set_name) + ".csv",))
     operating_points_scores = pd.read_csv(os.path.join(expdir_analysis, "operating_point_performances_" + str(set_name) + ".csv",))
@@ -140,7 +201,31 @@ def plot_distribution_proba_malignant_benign(features: pd.DataFrame,
                                              data_name: str,
                                              label_name: str,
                                              plot_fp: bool,) -> None:
+    """Plot overlapping histograms of model scores split by label.
 
+    Produces a figure with an inset zoomed subplot, saved as PNG and SVG.
+
+    Parameters
+    ----------
+    features:
+        DataFrame containing at least the columns *prediction_1* and
+        *label_name*. Must also have ``detection_status`` if *plot_fp*
+        is ``True``.
+    prediction_1:
+        Column name of the malignancy prediction score.
+    expdir_analysis:
+        Output directory for saved figures.
+    set_name:
+        Subplot/file identifier suffix.
+    data_name:
+        Human-readable name for the sample unit (e.g. ``"series"`` or
+        ``"lesions"``) used in the y-axis label.
+    label_name:
+        Column name of the binary ground-truth label.
+    plot_fp:
+        If ``True``, overlay a third histogram for false-positive
+        detections (requires a ``detection_status`` column).
+    """
     benign_test_nodule_set = features.loc[(features[label_name] == 0)]
     cancer_test_nodule_set = features.loc[(features[label_name] == 1)]
     if plot_fp:

@@ -1,3 +1,4 @@
+"""Utilities for reporting dataset size and class imbalance."""
 import os
 from typing import Dict
 
@@ -12,6 +13,31 @@ def database_sample_sizes(
     expdir_analysis: str,
     set_name: str,
 ) -> Dict:
+    """Compute and save class sizes and imbalance ratio to a CSV file.
+
+    Parameters
+    ----------
+    df:
+        Input DataFrame (already filtered to the evaluation subset).
+    data_label:
+        Column name of the unique sample identifier
+        (e.g. ``"series_uid"`` or ``"detection_id"``).
+    data_name:
+        Human-readable name for the sample type, used in column headers
+        (e.g. ``"series"`` or ``"lesions"``).
+    label_name:
+        Column name of the binary ground-truth label (0/1).
+    expdir_analysis:
+        Directory where ``sample_size_<set_name>.csv`` is saved.
+    set_name:
+        Name of the evaluation subset, appended to the output filename.
+
+    Returns
+    -------
+    Dict
+        Dictionary with total, positive, and negative sample counts plus
+        the imbalance ratio (benign : cancer).
+    """
     benign_df = df.loc[(df[label_name] == 0)]
     cancer_df = df.loc[(df[label_name] == 1)]
 

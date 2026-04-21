@@ -1,3 +1,6 @@
+"""Free-Response ROC (FROC) curve computation and confidence intervals
+for lesion-level detection.
+"""
 import os
 
 import matplotlib.pyplot as plt
@@ -15,7 +18,28 @@ def compute_fp_fn(features: pd.DataFrame,
                   threshold_detection: float,
                   y_labels: np.ndarray,
                   y_predictions: np.ndarray,) -> Tuple[float, float]:
+    """Compute false-positives per scan and sensitivity at a given threshold.
 
+    Parameters
+    ----------
+    features:
+        DataFrame containing at least a ``patient_id`` column used to
+        normalise the FP count by number of patients/scans.
+    threshold_detection:
+        Decision threshold; predictions >= threshold are classified as
+        positive.
+    y_labels:
+        Binary ground-truth array (0 = negative, 1 = positive).
+    y_predictions:
+        Numeric detection scores.
+
+    Returns
+    -------
+    fp_per_scan : float
+        Number of false-positive detections per scan.
+    sensitivity : float
+        True Positive Rate at the given threshold.
+    """
     sensitivity, specificity = sens_spec(y_labels, y_predictions, threshold_detection)
 
     number_patient_nodule = len(list(features["patient_id"].unique()))
@@ -36,7 +60,40 @@ def compute_froc_ci_sens_fp_per_scan(features: pd.DataFrame,
                                      expdir_analysis :str,
                                      set_name: str,
                                      type_of_op : str,) -> Tuple[float, ...]:
-    
+    """Bootstrap confidence intervals for FROC operating-point metrics.
+
+    For each bootstrap replicate, computes sensitivity and FP/scan at every
+    threshold in *value_tresh*, then aggregates percentile CIs.
+
+    Parameters
+    ----------
+    features:
+        DataFrame with at least ``patient_id`` for FP/scan normalisation.
+    y_labels:
+        Binary ground-truth array.
+    y_predictions:
+        Numeric detection scores.
+    value_tresh:
+        List of detection thresholds corresponding to the chosen operating
+        points (e.g. 0.5 FP/scan and 1 FP/scan).
+    nb_bootstrap_samples:
+        Number of bootstrap replicates.
+    confidence_threshold:
+        Coverage probability (e.g. ``0.95``).
+    expdir_analysis:
+        Output directory for bootstrap ``.npy`` arrays.
+    set_name:
+        Evaluation subset identifier.
+    type_of_op:
+        String prefix for output file names (e.g. ``"FP05_"`` or
+        ``"FP1_"``).
+
+    Returns
+    -------
+    Tuple
+        ``(sens_mean_per_op, lower_sens_per_op, upper_sens_per_op,
+        fp_per_scan_mean_per_op, lower_fp_per_op, upper_fp_per_op)``
+    """
     sens_nested_list = []
     fp_per_scan_nested_list = []
     count = 0
@@ -97,8 +154,34 @@ def compute_froc_with_2_op( features: pd.DataFrame,
                             nb_bootstrap_samples: int,
                             confidence_threshold: float,
                             fast_computation: bool = False,):
-    
-    
+    """Compute, plot, and save the FROC curve with two fixed operating points.
+
+    Operating points are chosen at 0.5 FP/scan and 1 FP/scan. Bootstrap CIs
+    are computed for sensitivity at each operating point and the FROC curve
+    is saved as PNG and SVG.
+
+    Parameters
+    ----------
+    features:
+        DataFrame containing detection predictions and ``patient_id``.
+    y_labels:
+        Binary ground-truth array.
+    y_predictions:
+        Numeric detection scores.
+    expdir_analysis:
+        Output directory.
+    set_name:
+        Evaluation subset identifier.
+    name_analysis:
+        Human-readable label used in the plot title.
+    nb_bootstrap_samples:
+        Number of bootstrap replicates for CI estimation.
+    confidence_threshold:
+        Coverage probability (e.g. ``0.95``).
+    fast_computation:
+        If ``True``, use 1 000 threshold steps instead of 500 000 for
+        speed (reduced curve resolution).
+    """
     operating_point_thresholds_sens = [0.5, 1]
     if fast_computation:
         thresholds = np.linspace(0.0000001, 0.9999999, num=1000)

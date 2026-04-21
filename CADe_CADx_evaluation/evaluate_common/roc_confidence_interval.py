@@ -1,3 +1,6 @@
+"""Bootstrap and Hanley-McNeil AUC confidence intervals, plus
+operating-point sensitivity/specificity profiles.
+"""
 import os
 from math import sqrt
 from typing import List, Optional, Tuple
@@ -8,14 +11,29 @@ from sklearn.metrics import roc_auc_score, roc_curve
 from sklearn.utils import resample
 from tqdm import tqdm
 
-# from lcseval.evaluate_common.logger import logger
-# from lcseval.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
 from CADe_CADx_evaluation.evaluate_common.logger import logger
 from CADe_CADx_evaluation.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
 
 
-
 def ci_roc_auc_hanley(y_true: np.ndarray, y_score: np.ndarray) -> Tuple[float, float]:
+    """Compute the 95 % confidence interval for AUC using the Hanley-McNeil method.
+
+    Parameters
+    ----------
+    y_true:
+        Binary ground-truth array (0 = negative, 1 = positive).
+    y_score:
+        Numeric prediction scores.
+
+    Returns
+    -------
+    lower : float
+        Lower bound of the 95 % CI (clamped to [0, 1]).
+    upper : float
+        Upper bound of the 95 % CI (clamped to [0, 1]).
+    AUC : float
+        Point estimate of the AUC.
+    """
     AUC = roc_auc_score(y_true, y_score)
     N1 = sum(y_true == 1)
     N2 = sum(y_true != 1)
@@ -56,6 +74,44 @@ def ci_roc_auc_bootstrap(
     operating_point_thresholds: Optional[list] = None,
     compute_sens_spec_ci: bool = False,
 ) -> Tuple[float, ...]:
+    """Estimate AUC confidence intervals via bootstrap resampling.
+
+    The function also optionally computes per-operating-point bootstrap CIs
+    for sensitivity, specificity, and accuracy when *compute_sens_spec_ci*
+    is ``True``. The last element of *operating_point_thresholds* is
+    overwritten in-place with the maximum-Youden-index threshold.
+
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array (0 = negative, 1 = positive).
+    y_predictions:
+        Numeric prediction scores.
+    nb_bootstrap_samples:
+        Number of bootstrap replicates (typically 5000).
+    confidence_threshold:
+        Coverage probability of the CI, e.g. ``0.95`` for 95 %.
+    expdir_analysis:
+        Output directory for bootstrap arrays (``.npy`` files).
+    set_name:
+        Evaluation subset identifier appended to output file names.
+    operating_point_thresholds:
+        List of decision thresholds at which per-OP metrics are computed.
+        The last element will be replaced by the max-Youden threshold.
+    compute_sens_spec_ci:
+        If ``True``, also compute per-OP bootstrap CIs for sensitivity,
+        specificity, and accuracy and include them in the return tuple.
+
+    Returns
+    -------
+    Tuple
+        When *compute_sens_spec_ci* is ``False``:
+        ``(mean_auc, stdev_auc, lower_auc, upper_auc)``.
+
+        When *compute_sens_spec_ci* is ``True``, additionally:
+        sens_mean_per_op, lower/upper_sens_per_op, spec_mean_per_op,
+        lower/upper_spec_per_op, acc_mean_per_op, lower/upper_acc_per_op.
+    """
     # Initialize variables
     auc_list = []
     sens_nested_list = []
@@ -215,6 +271,24 @@ def sens_spec_per_op(
     y_predictions: np.ndarray,
     operating_point_thresholds: List[float] = None,
 ) -> Tuple[float, ...]:
+    """Compute sensitivity, specificity, and accuracy at *each* operating point.
+
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array.
+    y_predictions:
+        Numeric prediction scores.
+    operating_point_thresholds:
+        List of decision threshold values.
+
+    Returns
+    -------
+    Tuple
+        ``(sens_per_op, spec_per_op, acc_per_op, fpr, tpr, thresholds)``
+        where the first three are lists of floats (one per operating point)
+        and the last three are :class:`numpy.ndarray` from the ROC curve.
+    """
     sens_per_op = []
     spec_per_op = []
     acc_per_op = []
@@ -253,6 +327,34 @@ def compute_ci_roc_auc(
     nb_bootstrap_samples: int,
     confidence_threshold: float,
 ) -> None:
+    """Orchestrate AUC CI computation and save all results to CSV files.
+
+    Combines Hanley-McNeil and bootstrap estimates, calls
+    :func:`sens_spec_per_op`, saves ROC arrays, operating-point
+    performance tables, and AUC summary CSVs.
+
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array.
+    y_predictions:
+        Numeric prediction scores.
+    operating_point_thresholds:
+        Fixed operating-point thresholds (last element will be replaced by
+        the max-Youden threshold).
+    operating_point_labels:
+        Human-readable labels for each operating point.
+    expdir_analysis:
+        Output directory for all result CSV files.
+    set_name:
+        Evaluation subset identifier.
+    compute_sens_spec_ci:
+        Whether to also compute per-OP bootstrap CIs.
+    nb_bootstrap_samples:
+        Number of bootstrap replicates.
+    confidence_threshold:
+        Coverage probability (e.g. ``0.95``).
+    """
     # Measure confidence interval of AUC using Hanley & McNeil method
     (lower_auc_hc, upper_auc_hc, AUC) = ci_roc_auc_hanley(y_labels, y_predictions)
 

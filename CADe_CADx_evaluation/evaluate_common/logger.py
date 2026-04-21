@@ -1,8 +1,27 @@
+"""Logging configuration for the CADe/CADx evaluation package.
+
+A single module-level :data:`logger` instance is created at import time and
+writes to both *stdout* and to a log file two levels above the package root.
+"""
 import logging
 from pathlib import Path
 
 
 def setup_logger(logfile, level=logging.INFO):
+    """Create and configure a logger that writes to file and stdout.
+
+    Parameters
+    ----------
+    logfile:
+        Path to the log file.
+    level:
+        Logging level (default: ``logging.INFO``).
+
+    Returns
+    -------
+    logging.Logger
+        Configured logger instance.
+    """
     # Create a logger
     logger = logging.getLogger("CADe_CADx_Evaluate")
     logger.setLevel(level)

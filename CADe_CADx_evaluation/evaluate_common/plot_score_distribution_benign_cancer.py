@@ -1,3 +1,6 @@
+"""Histograms of model scores stratified by ground-truth label, binned at
+operating-point thresholds.
+"""
 import os
 
 import matplotlib.pyplot as plt
@@ -5,12 +8,29 @@ import numpy as np
 import pandas as pd
 
 
-
 def distribution_risk_malignant_benign(df: pd.DataFrame,
                                        prediction: str,
                                        expdir_analysis: str, 
                                        set_name: str) -> None:
-    
+    """Plot and save a histogram of malignancy scores split by label.
+
+    Bins are defined by the operating-point thresholds stored in
+    ``operating_point_scores_<set_name>.csv`` so that the histogram
+    boundaries align exactly with clinical decision thresholds.
+
+    Parameters
+    ----------
+    df:
+        DataFrame containing at least columns ``"label"`` and
+        ``prediction``.
+    prediction:
+        Column name of the malignancy prediction score.
+    expdir_analysis:
+        Directory containing the pre-computed ``operating_point_scores``
+        CSV and where the output files are written.
+    set_name:
+        Evaluation subset identifier used for file name suffixes.
+    """
     benign_df = df.loc[(df["label"] == 0)]
     cancer_df = df.loc[(df["label"] == 1)]
 

@@ -1,3 +1,4 @@
+"""Precision-Recall curve computation and plotting."""
 from sklearn.metrics import precision_recall_curve, average_precision_score
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,6 +11,20 @@ def plot_precision_recall(
     expdir_analysis: str,
     set_name: str,
 ) -> None:
+    """Plot and save a Precision-Recall curve.
+
+    Parameters
+    ----------
+    y_labels:
+        Binary ground-truth array (0 = negative, 1 = positive).
+    y_predictions:
+        Numeric prediction scores.
+    expdir_analysis:
+        Output directory; files are saved as
+        ``Precision_Recall_curve_model_<set_name>.png/.svg``.
+    set_name:
+        Evaluation subset name appended to output filenames.
+    """
 
     average_precision = average_precision_score(y_labels, y_predictions)
     precision, recall, _ = precision_recall_curve(y_labels, y_predictions)
