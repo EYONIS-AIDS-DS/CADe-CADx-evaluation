@@ -3,6 +3,7 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/github/license/EYONIS-AIDS-DS/CADe-CADx-evaluation)](LICENSE)
 [![arXiv](https://img.shields.io/badge/arXiv-2512.00281-b31b1b.svg)](https://arxiv.org/abs/2512.00281)
+[![Documentation](https://readthedocs.org/projects/cade-cadx-evaluation/badge/?version=latest)](https://cade-cadx-evaluation.readthedocs.io/en/latest/)
 
 This repository provides a complete, standardised performance evaluation framework for **CADe** (Computer-Aided Detection) and **CADx** (Computer-Aided Diagnosis) systems.  
 It targets binary detection and classification systems (e.g. malignant nodule detection) and computes ROC curves, Precision-Recall curves, FROCs (with configurable operating points), bootstrap confidence intervals, and statistical comparison tests across arbitrary sets of predictions.
