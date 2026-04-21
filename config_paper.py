@@ -102,8 +102,9 @@ list_series_evaluations_figure_3 = [
      ("radiologist_12", "model_prediction",  "label", [0,], ["Youden Index Max"]),
     ]
 
-# list_series_evaluations_figure_2 = [("test1", "lad_pred_max_suspicious", "label", [0,], ["Youden Index Max"]),]
-list_series_evaluations_figure_5 = [
+
+
+list_series_evaluations_figure_7 = [
     ("4_10_mm_test3",  "model_prediction",         "label",[0,],["Youden Index Max"]),
     ("10_20_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
     ("20_30_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
@@ -121,7 +122,7 @@ list_series_evaluations_figure_5 = [
     ("stage_1_test1",    "model_prediction",         "label",[0,],["Youden Index Max"]),
     ("stage_late_test1", "model_prediction",         "label",[0,],["Youden Index Max"]),
     ]
-list_series_evaluations_figure_6 = [
+list_series_evaluations_figure_8 = [
     ("test6",               "model_prediction_T-1",       "label", [0,], ["Youden Index Max"]),
     ("test6",               "model_prediction_evolution", "label", [0,], ["Youden Index Max"]),
     ("test6",               "delta_volume",               "label", [0,], ["Youden Index Max"]),
@@ -140,8 +141,8 @@ list_series_evaluations_figure = [
     (list_series_evaluations_figure_1,          "figure_1",          path_data_series),
     (list_series_evaluations_figure_2,          "figure_2",          path_data_series),
     (list_series_evaluations_figure_3,          "figure_3",          path_data_series),
-    (list_series_evaluations_figure_5,          "figure_5",          path_data_series),
-    (list_series_evaluations_figure_6,          "figure_6",          path_data_series),
+    (list_series_evaluations_figure_7,          "figure_7",          path_data_series),
+    (list_series_evaluations_figure_8,          "figure_8",          path_data_series),
 ]
 
 ############################################################################
@@ -177,29 +178,8 @@ list_lesions_evaluations_figure_4 = [
     ("test1", "nndetection_baumgartner_CADe_prediction","label_nodule",[0,], ["Youden Index Max"]), 
     ("test1", "nndetection_CADe_prediction",            "label_nodule",[0,], ["Youden Index Max"]),  
     ]
+
 list_lesions_evaluations_figure_5 = [
-    ("4_10_mm_test3",  "model_prediction",         "label",[0,],["Youden Index Max"]),
-    ("10_20_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
-    ("20_30_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
-    ("4_10_mm_test3",  "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
-    ("10_20_mm_test3", "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
-    ("20_30_mm_test3", "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
-    ]
-list_lesions_evaluations_figure_6 = [
-    ("test6",               "model_prediction_T-1",       "label", [0,], ["Youden Index Max"]),
-    ("test6",               "model_prediction_evolution", "label", [0,], ["Youden Index Max"]),
-    ("test6",               "delta_volume",               "label", [0,], ["Youden Index Max"]),
-    ("test6",               "delta_lad",                  "label", [1.5,0], ["1.5mm diameter","Youden max"]),
-    ("test6",               "RDT",                        "label", [365/600,365/400,0], ["VDT 600 days","VDT 400 days","Youden max"]),  
-    ("test6",  "delta_volume",             "label", [0,], ["Youden Index Max"]),
-    ("test6",  "delta_volume_day_norm",    "label", [0,], ["Youden Index Max"]),
-    ("test6",  "RDT",                      "label", [0,], ["Youden Index Max"]),
-    ("test6",  "RDT_year_norm",            "label", [0,], ["Youden Index Max"]),
-    ("test6",  "VDT",                      "label", [0,], ["Youden Index Max"]),
-    ("test6",  "VDT_median_corrected",     "label", [0,], ["Youden Index Max"]),
-    ("test6",  "VDT_NELSON_criteria","label", [0,], ["Youden Index Max"]),
-    ]
-list_lesions_evaluations_figure_supplementary_3 = [
      ("radiologist_1",  "4_radiologist_prediction",  "label", [0,], ["Youden Index Max"]),
      ("radiologist_2",  "4_radiologist_prediction",  "label", [0,], ["Youden Index Max"]),
      ("radiologist_3",  "4_radiologist_prediction",  "label", [0,], ["Youden Index Max"]),
@@ -226,13 +206,36 @@ list_lesions_evaluations_figure_supplementary_3 = [
      ("radiologist_12", "model_prediction",  "label", [0,], ["Youden Index Max"]),
     ]    
 
+list_lesions_evaluations_figure_7 = [
+    ("4_10_mm_test3",  "model_prediction",         "label",[0,],["Youden Index Max"]),
+    ("10_20_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
+    ("20_30_mm_test3", "model_prediction",         "label",[0,],["Youden Index Max"]),
+    ("4_10_mm_test3",  "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
+    ("10_20_mm_test3", "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
+    ("20_30_mm_test3", "4_radiologist_prediction", "label",[0,],["Youden Index Max"]),
+    ]
+list_lesions_evaluations_figure_8 = [
+    ("test6",               "model_prediction_T-1",       "label", [0,], ["Youden Index Max"]),
+    ("test6",               "model_prediction_evolution", "label", [0,], ["Youden Index Max"]),
+    ("test6",               "delta_volume",               "label", [0,], ["Youden Index Max"]),
+    ("test6",               "delta_lad",                  "label", [1.5,0], ["1.5mm diameter","Youden max"]),
+    ("test6",               "RDT",                        "label", [365/600,365/400,0], ["VDT 600 days","VDT 400 days","Youden max"]),  
+    ("test6",  "delta_volume",             "label", [0,], ["Youden Index Max"]),
+    ("test6",  "delta_volume_day_norm",    "label", [0,], ["Youden Index Max"]),
+    ("test6",  "RDT",                      "label", [0,], ["Youden Index Max"]),
+    ("test6",  "RDT_year_norm",            "label", [0,], ["Youden Index Max"]),
+    ("test6",  "VDT",                      "label", [0,], ["Youden Index Max"]),
+    ("test6",  "VDT_median_corrected",     "label", [0,], ["Youden Index Max"]),
+    ("test6",  "VDT_NELSON_criteria","label", [0,], ["Youden Index Max"]),
+    ]
+
 
 # a list of evaluations is a 3 tuple (list_lesions_evaluations, figure_name, path_to_data)
 list_lesions_evaluations_figure = [
     (list_lesions_evaluations_figure_4,          "figure_4",          path_data_lesions),
     (list_lesions_evaluations_figure_5,          "figure_5",          path_data_lesions),
-    (list_lesions_evaluations_figure_6,          "figure_6",          path_data_lesions_longitudinal),
-    (list_lesions_evaluations_figure_supplementary_3, "figure_supplementary_3", path_data_lesions),
+    (list_lesions_evaluations_figure_7,          "figure_7",          path_data_lesions),
+    (list_lesions_evaluations_figure_8,          "figure_8",          path_data_lesions_longitudinal),
 ]
 
 
@@ -307,22 +310,28 @@ list_of_tuples_of_pairs_of_bootstrap_paths_figure_5 = [
     ("AUC_lesion_model_vs_4radiolog_4_10_lad",          root2 / "model_prediction_4_10_mm_test3" / "AUC_array_5000_bootstrap_4_10_mm_test3.npy",      root2 / "4_radiologist_prediction_4_10_mm_test3" / "AUC_array_5000_bootstrap_4_10_mm_test3.npy"),
     ("AUC_lesion_model_vs_4radiolog_10_20_lad",         root2 / "model_prediction_10_20_mm_test3" / "AUC_array_5000_bootstrap_10_20_mm_test3.npy",    root2 / "4_radiologist_prediction_10_20_mm_test3" / "AUC_array_5000_bootstrap_10_20_mm_test3.npy"),
     ("AUC_lesion_model_vs_4radiolog_20_30_lad",         root2 / "model_prediction_20_30_mm_test3" / "AUC_array_5000_bootstrap_20_30_mm_test3.npy",    root2 / "4_radiologist_prediction_20_30_mm_test3" / "AUC_array_5000_bootstrap_20_30_mm_test3.npy"),
+    # classical Growth measure benchmark LESION level
+    ("AUC_patient_volume_vs_lad_test6",    root2 / "volume_max_suspicious_test1" / "AUC_array_5000_bootstrap_nlst_test1.npy",         root2 / "lad_diameter_max_suspicious_test1" / "AUC_array_5000_bootstrap_nlst_test1.npy"),
 ]
 figure_name = "figure_6"
 root = path_model_eval / "evaluate_series"/ figure_name
 root2 =  path_model_eval / "evaluate_lesions"/ figure_name
 list_of_tuples_of_pairs_of_bootstrap_paths_figure_6 = [
+    # Model vs. classical Growth measure benchmark LESION level
     ("AUC_lesion_model_T-1_vs_model_evolution_test6", root2 / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy", root2 / "model_prediction_evolution_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_model_T-1_vs_delta_volume_test6",    root2 / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy", root2 / "delta_volume_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_model_T-1_vs_delta_lad_test6",       root2 / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy", root2 / "delta_lad_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_model_T-1_vs_RDT_test6",             root2 / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy", root2 / "RDT_test6" / "AUC_array_5000_bootstrap_test6.npy"),
+    # classical Growth measure benchmark LESION level
     ("AUC_lesion_delta_volume_vs_delta_lad_test6",    root2 / "delta_volume_test6" / "AUC_array_5000_bootstrap_test6.npy",         root2 / "delta_lad_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_delta_volume_vs_RDT_test6",          root2 / "delta_volume_test6" / "AUC_array_5000_bootstrap_test6.npy",         root2 / "RDT_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_delta_lad_vs_RDT_test6",             root2 / "delta_lad_test6" / "AUC_array_5000_bootstrap_test6.npy",            root2 / "RDT_test6" / "AUC_array_5000_bootstrap_test6.npy"),
+    # Model vs. classical Growth measure benchmark PATIENT level
     ("AUC_patient_model_T-1_vs_model_evolution_test6",root / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy",  root / "model_prediction_evolution_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_patient_model_T-1_vs_delta_volume_test6",   root / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy",  root / "delta_volume_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_patient_model_T-1_vs_delta_lad_test6",      root / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy",  root / "delta_lad_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_patient_model_T-1_vs_RDT_test6",            root / "model_prediction_T-1_test6" / "AUC_array_5000_bootstrap_test6.npy",  root / "RDT_test6" / "AUC_array_5000_bootstrap_test6.npy"),
+    # other benchmark 
     ("AUC_patient_model__T-2_VDT_sup_400_vs_4_radiologist_VDT_sup_400_test6&3",root / "model_prediction_T-2_VDT_sup_400_test6&3" / "AUC_array_5000_bootstrap_VDT_sup_400_test6&3.npy",  root / "4_radiologist_prediction_VDT_sup_400_test6&3" / "AUC_array_5000_bootstrap_VDT_sup_400_test6&3.npy"),
     ("AUC_lesion_delta_volume_vs_delta_volume_day_norm_test6", root2 / "delta_volume_test6" / "AUC_array_5000_bootstrap_test6.npy", root2 / "delta_volume_day_norm_test6" / "AUC_array_5000_bootstrap_test6.npy"),
     ("AUC_lesion_RDT_vs_RDT_year_norm_test6",                  root2 / "RDT_test6" / "AUC_array_5000_bootstrap_test6.npy",          root2 / "RDT_year_norm_test6" / "AUC_array_5000_bootstrap_test6.npy"),
