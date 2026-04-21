@@ -55,7 +55,7 @@ def compute_froc_ci_sens_fp_per_scan(features: pd.DataFrame,
 
         except Exception:
             count = count + 1
-            logger.error("Number of failed bootstrapp (2small sample)", count)
+            logger.error(f"Number of failed bootstrap samples (sample too small): {count}")
 
     # Convert nested list to 2D NumPy array
     sens_array = np.array(sens_nested_list)

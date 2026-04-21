@@ -1,6 +1,6 @@
 import os
 from math import sqrt
-from typing import Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -12,7 +12,7 @@ from tqdm import tqdm
 # from lcseval.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
 from CADe_CADx_evaluation.evaluate_common.logger import logger
 from CADe_CADx_evaluation.evaluate_common.sens_spec import accuracy, closest_value, sens_spec
-from typing import Tuple, List
+
 
 
 def ci_roc_auc_hanley(y_true: np.ndarray, y_score: np.ndarray) -> Tuple[float, float]:

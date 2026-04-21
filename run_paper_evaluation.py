@@ -148,7 +148,7 @@ def parse_args(args):
     ##################
     help_msg = "confidence_threshold"
     default = config.confidence_threshold
-    parser.add_argument("--confidence_threshold", required=False, type=int, help=help_msg, default=default)
+    parser.add_argument("--confidence_threshold", required=False, type=float, help=help_msg, default=default)
 
     ##################
     # path_model_eval
@@ -160,7 +160,7 @@ def parse_args(args):
     ##################
     # run_evaluate_series
     ##################
-    help_msg = "run_evaluate_series "
+    help_msg = "run_evaluate_series"
     default = config.run_evaluate_series
     parser.add_argument("--run_evaluate_series", required=False, type=bool, help=help_msg, default=default)
 
@@ -178,10 +178,10 @@ def parse_args(args):
     default = config.list_series_evaluations_figure
     parser.add_argument("--list_series_evaluations_figure", required=False, type=list, help=help_msg, default=default)
 
-     ##################
+    ##################
     # run_evaluate_lesions
     ##################
-    help_msg = "run_evaluate_lesions "
+    help_msg = "run_evaluate_lesions"
     default = config.run_evaluate_lesions
     parser.add_argument("--run_evaluate_lesions", required=False, type=bool, help=help_msg, default=default)
 
@@ -199,10 +199,10 @@ def parse_args(args):
     default = config.list_lesions_evaluations_figure
     parser.add_argument("--list_lesions_evaluations_figure", required=False, type=list, help=help_msg, default=default)
 
-     ##################
+    ##################
     # run_statistical_tests
     ##################
-    help_msg = "run_statistical_tests "
+    help_msg = "run_statistical_tests"
     default = config.run_statistical_tests
     parser.add_argument("--run_statistical_tests", required=False, type=bool, help=help_msg, default=default)
 

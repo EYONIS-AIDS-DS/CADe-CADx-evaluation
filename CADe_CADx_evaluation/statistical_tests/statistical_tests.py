@@ -50,8 +50,8 @@ def statistical_test_main(list_of_tuples_of_pairs_of_bootstrap_paths, expdir_ana
             list_test_result_equal = []
             list_test_result_unequal = []
             plot_distribution_bootstrap(arr_1, arr_2, tuple_of_pairs[0], expdir_analysis)
-            statistic, pvalue_unequal = stats.ttest_ind(arr_1, arr_2, alternative= "greater",  equal_var=False) 
-            statistic, pvalue_equal = stats.ttest_ind(arr_1, arr_2, alternative= "greater",  equal_var=True)    
+            _, pvalue_unequal = stats.ttest_ind(arr_1, arr_2, alternative= "greater",  equal_var=False) 
+            _, pvalue_equal = stats.ttest_ind(arr_1, arr_2, alternative= "greater",  equal_var=True)    
 
             logger.info("##################    TEST " + str(tuple_of_pairs[0])+ "    ##################")
             logger.info(f"The P_valule of t-test unpaired one sided (1>2) unequal variance is: {pvalue_unequal}")
@@ -116,11 +116,11 @@ def statistical_test_main(list_of_tuples_of_pairs_of_bootstrap_paths, expdir_ana
                 array_1 = arr_1[:,i]
                 array_2 = arr_2[:,i]
                 plot_distribution_bootstrap(array_1, array_2, tuple_of_pairs[0]+"_op__" +str(i+1), expdir_analysis)
-                statistic, pvalue_unequal = stats.ttest_ind(array_1, array_2, alternative= "greater",  equal_var=False)   
-                statistic, pvalue_equal = stats.ttest_ind(array_1, array_2, alternative= "greater",  equal_var=True)                    
+                _, pvalue_unequal = stats.ttest_ind(array_1, array_2, alternative= "greater",  equal_var=False)   
+                _, pvalue_equal = stats.ttest_ind(array_1, array_2, alternative= "greater",  equal_var=True)                    
                 logger.info("##################    TEST " + str(tuple_of_pairs[0])+"_op_"+str(i+1)+ "    ##################")
-                logger.info(f"The P_valule of t-test unpaired one sided (1>2) unequal variance is: {pvalue_equal}")
-                logger.info(f"The P_valule of t-test unpaired one sided (1>2) equal variance is: {pvalue_unequal}")
+                logger.info(f"The P_valule of t-test unpaired one sided (1>2) unequal variance is: {pvalue_unequal}")
+                logger.info(f"The P_valule of t-test unpaired one sided (1>2) equal variance is: {pvalue_equal}")
                 list_of_test_name.append(tuple_of_pairs[0]+"_op_"+str(i+1))
                 list_of_pvalue_equal.append(pvalue_equal)
                 list_of_pvalue_unequal.append(pvalue_unequal)
@@ -159,7 +159,7 @@ def statistical_test_main(list_of_tuples_of_pairs_of_bootstrap_paths, expdir_ana
                 elif pvalue_equal < 0.05:
                     logger.info("The null hypothesis can be rejected at 0.05 level of significance. Moderate evidence against the null hypothesis")
                     list_test_result_equal.append("The null hypothesis can be rejected at 0.05 level of significance. Moderate evidence against the null hypothesis")
-                elif pvalue_unequal < 0.1:
+                elif pvalue_equal < 0.1:
                     logger.info("The null hypothesis can be rejected at 0.1 level of significance.  Weak evidence against the null hypothesis")
                     list_test_result_equal.append("The null hypothesis can be rejected at 0.1 level of significance.  Weak evidence against the null hypothesis")
                 elif pvalue_equal >= 0.1:

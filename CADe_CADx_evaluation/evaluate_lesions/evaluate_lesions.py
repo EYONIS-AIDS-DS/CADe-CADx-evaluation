@@ -103,8 +103,8 @@ def plot_distribution_malignant_benign(df: pd.DataFrame, expdir: Path, set_name:
 
 def prepare_data_frame_paper(data_frame, name_analysis, set_name, label_name, prediction, expdir) -> pd.DataFrame:
 
-    if "test1" in set_name :
-        data_frame = data_frame
+    if "test1" in set_name:
+        pass  # use full data frame
     elif set_name == "test2" :
         data_frame = data_frame.loc[data_frame.nlst_test_2]
     elif "test3" in set_name :  
@@ -209,13 +209,13 @@ def prepare_data_frame_paper(data_frame, name_analysis, set_name, label_name, pr
     
     return data_frame  
   
-   ###################################################################################################
-   ##############################         EVALUATION           #######################################
-   ################################################################################################### 
+  
+###################################################################################################
+##############################         EVALUATION           #######################################
+###################################################################################################
+# This function evaluates the performance of a model on a given dataset by computing various
+# metrics such as sensitivity, specificity, and ROC AUC.
 
-"""
-   This function evaluates the performance of a model on a given dataset by computing various metrics such as sensitivity, specificity, and ROC AUC.
-"""
 
 def evaluate_lesions_main(fast_computation,
                         path_to_load_csv_lesion,
@@ -259,7 +259,7 @@ def evaluate_lesions_main(fast_computation,
     y_labels = data_frame[label_name].to_numpy()
 
     
-    compute_sens_spec_ci = (True)  # internal variable to avoid long unsusefull computation
+    compute_sens_spec_ci = True  # internal variable to control CI computation for sens/spec at each operating point
 
     compute_ci_roc_auc( y_labels,
                         y_predictions,
@@ -279,7 +279,6 @@ def evaluate_lesions_main(fast_computation,
 
     # Compute FROC
     logger.info("Plot FROC and sens spec at 2 operating points")
-    # fast_computation = False # to avoid long unsusefull computation
        
     compute_froc_with_2_op( data_frame,
                             y_labels,
@@ -333,14 +332,14 @@ def parse_args(args):
     ##################
     # set_name
     ##################
-    help_msg = "name of the test set, as a boolean variable in the CSV file pointing to a subset of the data"
+    help_msg = "name of the test set, as a boolean variable in the CSV file designating a subset of the data"
     default = config.list_lesions_evaluations[0][0]
     parser.add_argument("--set_name", help=help_msg, default=default, type=str)
 
     ##################
     # prediction
     ##################
-    help_msg = "name of the prediction, as a string  variable in the CSV file pointing to probability-prediction inference"
+    help_msg = "name of the prediction, as a string variable in the CSV file pointing to probability-prediction inference"
     default = config.list_lesions_evaluations[0][1]
     parser.add_argument("--prediction", help=help_msg, default=default, type=str)
 

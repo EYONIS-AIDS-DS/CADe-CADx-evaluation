@@ -15,7 +15,7 @@ def sens_spec(y_labels: np.ndarray, y_predictions: np.ndarray, threshold: float)
     specificity = ((1 - prediction_binary) * (1 - y_labels)).sum() / ((1 - y_labels).sum())
     return sensitivity, specificity
 
-def accuracy(y_labels: np.ndarray, y_predictions: np.ndarray, threshold: float) -> Tuple[float, float]:
+def accuracy(y_labels: np.ndarray, y_predictions: np.ndarray, threshold: float) -> float:
     
     prediction_binary = (y_predictions >= threshold).astype(int)
     accuracy = ((prediction_binary * y_labels).sum() +  ((1 - prediction_binary) * (1 - y_labels)).sum() )/ ((y_labels.sum()) + ((1 - y_labels).sum()))
