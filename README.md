@@ -23,7 +23,8 @@ It serves two independent purposes:
    - 1.1 [uv — Package Manager & Git](#11-uv--package-manager--git)
    - 1.2 [Clone the Repository](#12-clone-the-repository)
    - 1.3 [Install Dependencies](#13-install-dependencies)
-   - 1.4 [Data Files Setup](#14-data-files-setup)
+   - 1.4 [Install via pip (without cloning)](#14-install-via-pip-without-cloning)
+   - 1.5 [Data Files Setup](#15-data-files-setup)
 2. [Repository Structure](#2-repository-structure)
    - 2.1 [Configuration](#21-configuration)
    - 2.2 [Input Format](#22-input-format)
@@ -80,6 +81,16 @@ uv venv
 uv sync
 ```
 
+### 1.4 Install via pip (without cloning)
+
+If you only need the Python package (e.g. to use the evaluation functions in your own project), you can install directly from GitHub without cloning the repository:
+
+```bash
+pip install git+https://github.com/EYONIS-AIDS-DS/CADe-CADx-evaluation.git
+```
+
+> **Note:** this installs the package only — the `data/` directory and `config_paper.py` required to reproduce the paper figures are not included. Clone the full repository for that.
+
 Activate the environment:
 
 ```bash
@@ -92,7 +103,7 @@ source .venv/bin/activate
 
 > **Python version:** the project requires Python >= 3.11, < 3.12. `uv` will download the correct interpreter automatically if needed.
 
-### 1.4 Data Files Setup
+### 1.5 Data Files Setup
 
 Large CSV input files are stored via **Git LFS**. Pull them after cloning:
 

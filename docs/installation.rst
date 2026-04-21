@@ -25,8 +25,23 @@ Installing with uv (recommended)
    uv venv
    uv sync
 
-Installing with pip
--------------------
+Installing with pip (without cloning)
+--------------------------------------
+
+If you only need the package in your own project, install directly from GitHub:
+
+.. code-block:: bash
+
+   pip install git+https://github.com/EYONIS-AIDS-DS/CADe-CADx-evaluation.git
+
+.. note::
+
+   This installs the package only — the ``data/`` directory and
+   ``config_paper.py`` needed to reproduce paper figures are not included.
+   Clone the full repository for that.
+
+Installing with pip (from a clone)
+-----------------------------------
 
 .. code-block:: bash
 
