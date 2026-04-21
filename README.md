@@ -15,6 +15,8 @@ It serves two independent purposes:
 
 📖 **Full documentation:** [https://cade-cadx-evaluation.readthedocs.io/en/latest/](https://cade-cadx-evaluation.readthedocs.io/en/latest/)
 
+📓 **Interactive tutorial:** [`tutorial_cade_cadx_evaluation.ipynb`](tutorial_cade_cadx_evaluation.ipynb) — a step-by-step Jupyter notebook covering installation, repository structure, one-command paper reproduction, and independent usage of the `evaluate_series`, `evaluate_lesions`, and `statistical_tests` modules on synthetic datasets.
+
 ---
 
 ## Table of Contents
