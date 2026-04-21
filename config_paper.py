@@ -310,8 +310,6 @@ list_of_tuples_of_pairs_of_bootstrap_paths_figure_5 = [
     ("AUC_lesion_model_vs_4radiolog_4_10_lad",          root2 / "model_prediction_4_10_mm_test3" / "AUC_array_5000_bootstrap_4_10_mm_test3.npy",      root2 / "4_radiologist_prediction_4_10_mm_test3" / "AUC_array_5000_bootstrap_4_10_mm_test3.npy"),
     ("AUC_lesion_model_vs_4radiolog_10_20_lad",         root2 / "model_prediction_10_20_mm_test3" / "AUC_array_5000_bootstrap_10_20_mm_test3.npy",    root2 / "4_radiologist_prediction_10_20_mm_test3" / "AUC_array_5000_bootstrap_10_20_mm_test3.npy"),
     ("AUC_lesion_model_vs_4radiolog_20_30_lad",         root2 / "model_prediction_20_30_mm_test3" / "AUC_array_5000_bootstrap_20_30_mm_test3.npy",    root2 / "4_radiologist_prediction_20_30_mm_test3" / "AUC_array_5000_bootstrap_20_30_mm_test3.npy"),
-    # classical Growth measure benchmark LESION level
-    ("AUC_patient_volume_vs_lad_test6",    root2 / "volume_max_suspicious_test1" / "AUC_array_5000_bootstrap_nlst_test1.npy",         root2 / "lad_diameter_max_suspicious_test1" / "AUC_array_5000_bootstrap_nlst_test1.npy"),
 ]
 figure_name = "figure_6"
 root = path_model_eval / "evaluate_series"/ figure_name
