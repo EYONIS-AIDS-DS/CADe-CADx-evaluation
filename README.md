@@ -13,6 +13,8 @@ It serves two independent purposes:
 1. **Reproduce** all results of the preprint *"Rethinking Lung Cancer Screening: AI Nodule Detection and Diagnosis Outperforms Radiologists, Leading Models, and Standards Beyond Size and Growth"* ([arXiv:2512.00281](https://arxiv.org/abs/2512.00281)).
 2. **Provide** a reusable, generic evaluation pipeline for any CADe/CADx system on any dataset.
 
+📖 **Full documentation:** [https://cade-cadx-evaluation.readthedocs.io/en/latest/](https://cade-cadx-evaluation.readthedocs.io/en/latest/)
+
 ---
 
 ## Table of Contents
