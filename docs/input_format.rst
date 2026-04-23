@@ -25,9 +25,11 @@ One row per CT scan (series).
    * - ``label``
      - int
      - Ground-truth label: ``1`` = cancer, ``0`` = benign.
-   * - ``split``
-     - str
-     - Dataset split (e.g. ``"test1"``, ``"test3"``).
+   * - ``<set_name>`` (e.g. ``nlst_test_2``, ``nlst_test_3`` …)
+     - bool
+     - One boolean column per evaluation set.  A row belongs to a given set
+       when its value is ``True``.  The column name is used as the
+       ``set_name`` argument when calling the evaluation functions.
    * - ``<prediction_name>``
      - float
      - Model output score in [0, 1].  One column per evaluated system.
@@ -56,9 +58,11 @@ One row per detected or annotated nodule.
    * - ``label``
      - int
      - Ground-truth label: ``1`` = cancer nodule, ``0`` = benign.
-   * - ``split``
-     - str
-     - Dataset split (e.g. ``"test1"``).
+   * - ``<set_name>`` (e.g. ``nlst_test_1``, ``nlst_test_6`` …)
+     - bool
+     - One boolean column per evaluation set.  A row belongs to a given set
+       when its value is ``True``.  The column name is used as the
+       ``set_name`` argument when calling the evaluation functions.
    * - ``detection_status``
      - str
      - ``"TP"``, ``"FP"``, or ``"FN"`` (used for FROC visualisation).
