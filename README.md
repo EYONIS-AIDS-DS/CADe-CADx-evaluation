@@ -156,7 +156,8 @@ CADe-CADx-evaluation/
 │   pyproject.toml
 │
 ├── data/
-│   │   CADe_CADx_evaluate.log       (OUTPUT — created at runtime)
+│   ├── log/                         (OUTPUT — created at runtime, git-ignored)
+│   │       CADe_CADx_evaluate.log
 │   │
 │   ├── data_series/                 (INPUT)
 │   │       series.csv

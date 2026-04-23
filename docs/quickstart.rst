@@ -56,6 +56,8 @@ Lesion-level FROC (example: nnDetection CADe, test set 1)
 Logging
 -------
 
-All runs write a log file ``CADe_CADx_evaluate.log`` two levels above the
-package root (i.e. at the repository root when using the standard layout).
+All runs write a log file to ``data/log/CADe_CADx_evaluate.log`` at the
+repository root.  The ``data/log/`` directory is created automatically on the
+first run if it does not already exist, and is listed in ``.gitignore`` so log
+files are never accidentally committed.
 Progress bars are displayed in the terminal using ``tqdm``.

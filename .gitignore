@@ -1,6 +1,7 @@
 data/evaluate_lesions
 data/evaluate_series
 data/statistical_tests
+data/log/*.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

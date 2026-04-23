@@ -1,7 +1,8 @@
 """Logging configuration for the CADe/CADx evaluation package.
 
 A single module-level :data:`logger` instance is created at import time and
-writes to both *stdout* and to a log file two levels above the package root.
+writes to both *stdout* and to ``data/log/CADe_CADx_evaluate.log`` at the
+repository root.  The directory is created automatically if it does not exist.
 """
 import logging
 from pathlib import Path
@@ -48,5 +49,10 @@ def setup_logger(logfile, level=logging.INFO):
     return logger
 
 
-path = Path().resolve().parents[1]
-logger = setup_logger(path / "CADe_CADx_evaluate.log")
+# Anchor to this file's location so the path is correct regardless of CWD.
+# logger.py lives at  <repo_root>/CADe_CADx_evaluation/evaluate_common/logger.py
+# so parents[2] is the repository root.
+_repo_root = Path(__file__).resolve().parents[2]
+_log_dir = _repo_root / "data" / "log"
+_log_dir.mkdir(parents=True, exist_ok=True)
+logger = setup_logger(_log_dir / "CADe_CADx_evaluate.log")
