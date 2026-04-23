@@ -4,13 +4,15 @@ Installation
 Requirements
 ------------
 
-* Python **3.11** or higher
-* `uv <https://docs.astral.sh/uv/>`_ (recommended package manager)
+* `uv <https://docs.astral.sh/uv/>`_ (recommended — manages Python and all dependencies automatically)
 
 .. note::
 
-   The project is tested with **NumPy 1.26.4** and the exact dependencies
-   pinned in ``pyproject.toml``.  Using ``uv`` ensures reproducible installs.
+   The project requires **Python 3.11** (declared in ``pyproject.toml`` as
+   ``requires-python = ">=3.11,<3.12"``).  When using ``uv``, the correct
+   Python version is selected and installed automatically — no manual Python
+   setup is needed.  Dependencies are pinned for reproducibility, including
+   **NumPy 1.26.4**.
 
 Installing with uv (recommended)
 ---------------------------------
